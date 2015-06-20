@@ -4,7 +4,7 @@ $version     = '7.10.1' # package version
 $packageName = 'ghc' # arbitrary name for the package, used in messages
 $url         = 'https://www.haskell.org/ghc/dist/7.10.1/ghc-7.10.1-i386-unknown-mingw32.tar.xz' # download url
 $url64       = 'https://www.haskell.org/ghc/dist/7.10.1/ghc-7.10.1-x86_64-unknown-mingw32.tar.xz' # 64bit URL here or remove - if installer decides, then use $url
-
+$env         = $Env:PATH
 
 function Install-Path {
 param(
@@ -34,7 +34,6 @@ param(
     #add it to the local path as well so users will be off and running
     $envPSPath = $env:PATH
     $Env:Path = $pathToInstall + $statementTerminator + $envPSPath
-    echo $Env:Path
   }
 }
 
@@ -54,7 +53,7 @@ try {
   Write-Host "Adding `'$binPackageDir`' to the path and the current shell path"
   Install-Path "$binPackageDir"
   # Reload the session to update path
-  Update-SessionEnvironment
+  Write-Host "$packageName $version has been installed. Before you can use it restart the console"
 } catch {
   # just blast away everything since the folders are versioned
   rm -r -fo $packageFullName
