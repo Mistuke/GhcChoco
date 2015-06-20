@@ -32,6 +32,5 @@
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
-    <file src="..\..\templates\**" target="tools" />
   </files>
 </package>
