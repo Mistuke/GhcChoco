@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>ghc</id>
     <title>GHC</title>
-    <version>7.10.1</version>
+    <version>7.8.3</version>
     <authors>GHC Team</authors>
     <owners>Tamar Christina</owners>
     <summary>GHC is a state-of-the-art, open source, compiler and interactive environment for the functional language Haskell.</summary>
@@ -18,7 +18,7 @@
             • GHC compiles Haskell code either directly to native code or using LLVM as a back-end. GHC can also generate C code as an intermediate target for porting to new platforms. The interactive environment compiles Haskell to bytecode, and supports execution of mixed bytecode/compiled programs. 
             • Profiling is supported, both by time/allocation and various kinds of heap profiling. 
             • GHC comes with several libraries, and thousands more are available on Hackage. </description>
-    <projectUrl>https://www.haskell.org/ghc/download_ghc_7_10_1</projectUrl>
+    <projectUrl>https://www.haskell.org/ghc/download_ghc_7_8_3</projectUrl>
     <tags>ghc haskell</tags>
     <copyright>Copyright 2004, The University Court of the University of Glasgow.</copyright>
     <licenseUrl>https://www.haskell.org/ghc/license</licenseUrl>
@@ -28,7 +28,7 @@
 <!--     <dependencies>
       <dependency id="7zip.commandline" version="" />
     </dependencies> -->
-    <releaseNotes>https://downloads.haskell.org/~ghc/7.10.1/docs/html/users_guide/release-7-10-1.html</releaseNotes>
+    <releaseNotes>https://downloads.haskell.org/~ghc/7.8.3/docs/html/users_guide/release-7-8-3.html</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
