@@ -17,7 +17,7 @@ for the latest pre-release version
 
     cinst ghc -version 7.8.4 
     
-for  specific version, e.g. 7.8.4
+for  specific version, e.g. `7.8.4`
 
 The installer will automatically pick the right bitness for your OS, but if you would
 like to force it to get `x86` on `x86_64` you can:
