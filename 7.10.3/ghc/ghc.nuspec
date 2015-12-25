@@ -18,7 +18,7 @@
             • GHC compiles Haskell code either directly to native code or using LLVM as a back-end. GHC can also generate C code as an intermediate target for porting to new platforms. The interactive environment compiles Haskell to bytecode, and supports execution of mixed bytecode/compiled programs. 
             • Profiling is supported, both by time/allocation and various kinds of heap profiling. 
             • GHC comes with several libraries, and thousands more are available on Hackage. </description>
-    <projectUrl>https://www.haskell.org/ghc/download_ghc_7_10_2=3</projectUrl>
+    <projectUrl>https://www.haskell.org/ghc/download_ghc_7_10_3</projectUrl>
     <tags>ghc haskell</tags>
     <copyright>Copyright 2015, The University Court of the University of Glasgow.</copyright>
     <licenseUrl>https://www.haskell.org/ghc/license</licenseUrl>
