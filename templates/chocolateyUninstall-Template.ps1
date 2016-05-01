@@ -1,33 +1,4 @@
-﻿function UnInstall-Path {
-param(
-  [string] $pathToInstall
-)
-  Write-Debug "Running 'UnInstall-Path' with pathToInstall:`'$pathToInstall`'";
-  $originalPathToInstall = $pathToInstall
-
-  #get the PATH variable
-  $envPath = $env:PATH
-  if ($envPath.ToLower().Contains($pathToInstall.ToLower()))
-  {
-    $pathType = [System.EnvironmentVariableTarget]::User
-    Write-Host "PATH environment variable does have $pathToInstall in it. Removing..."
-    $actualPath = Get-EnvironmentVariable -Name 'Path' -Scope $pathType
-
-    $statementTerminator = ";"
-    #does the path end in ';'?
-    $hasStatementTerminator = $actualPath -ne $null -and $actualPath.EndsWith($statementTerminator)
-    # if the last digit is not ;, then we are adding it
-    If (!$hasStatementTerminator -and $actualPath -ne $null) {$pathToInstall = $statementTerminator + $pathToInstall}
-    if (!$pathToInstall.EndsWith($statementTerminator)) {$pathToInstall = $pathToInstall + $statementTerminator}
-    $actualPath = $actualPath.Replace($pathToInstall, '')
-    
-    Write-Host "$actualPath"
-
-    Set-EnvironmentVariable -Name 'Path' -Value $actualPath -Scope $pathType
-  }
-}
-
-try {
+﻿try {
   #$installDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
   ### For BinRoot, use the following instead ###
   $binRoot         = Get-BinRoot
