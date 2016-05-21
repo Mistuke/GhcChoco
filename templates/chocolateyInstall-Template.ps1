@@ -13,8 +13,9 @@
 
   Write-Host "Adding `'$binPackageDir`' to the path and the current shell path"
   Install-ChocolateyPath "$binPackageDir"
+  
   # Reload the session to update path
-  Write-Host "$packageName $version has been installed. Before you can use it restart the console"
+  Write-Host "$packageName $version has been installed. You may need to restart the console to use it."
 } catch {
   throw $_.Exception
 }

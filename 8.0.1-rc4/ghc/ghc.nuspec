@@ -25,13 +25,18 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>http://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Haskell-Logo.svg/2000px-Haskell-Logo.svg.png</iconUrl>
-<!--     <dependencies>
-      <dependency id="7zip.commandline" version="" />
-    </dependencies> -->
-    <releaseNotes>http://downloads.haskell.org/~ghc/8.0.1-rc4/docs/html/</releaseNotes>
+    <dependencies>
+      <dependency id="cabal" version="1.24.0.0" />
+    </dependencies>
+    <releaseNotes>https://github.com/ghc/ghc/blob/ghc-8.0/docs/users_guide/8.0.1-notes.rst</releaseNotes>
+    <docsUrl>http://downloads.haskell.org/~ghc/8.0.1-rc4/docs/html/</docsUrl>
+    <mailingListUrl>https://mail.haskell.org/cgi-bin/mailman/listinfo/haskell-cafe</mailingListUrl>
+    <bugTrackerUrl>https://ghc.haskell.org/trac/ghc/</bugTrackerUrl>
+    <projectSourceUrl>https://www.haskell.org/ghc/</projectSourceUrl>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
     <file src="..\..\templates\**" target="tools" />
+    <file src="LICENSE.txt" target="LICENSE.txt" />
   </files>
 </package>
