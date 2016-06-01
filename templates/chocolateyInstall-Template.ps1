@@ -3,7 +3,6 @@
   $binRoot         = $(Split-Path -parent $MyInvocation.MyCommand.Definition)
   $packageFullName = Join-Path $binRoot ($packageName + '-' + $version)
   $binPackageDir   = Join-Path $packageFullName "bin"
-  $osBitness       = Get-ProcessorBits
 
   $tmpPath = Join-Path $env:chocolateyPackageFolder tmp
   $tarFile = $packageName + "Install"
