@@ -17,6 +17,7 @@
   Write-Host "Adding `'$binPackageDir`' to the path and the current shell path"
   Install-ChocolateyPath "$binPackageDir"
   
+  Write-Host "Hiding shims for `'$binRoot`'."
   # Blocking shims
   $files = get-childitem $binRoot -include *.exe -recurse
 
