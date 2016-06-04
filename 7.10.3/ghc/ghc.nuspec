@@ -25,9 +25,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>http://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Haskell-Logo.svg/2000px-Haskell-Logo.svg.png</iconUrl>
-<!--     <dependencies>
-      <dependency id="7zip.commandline" version="" />
-    </dependencies> -->
+    <dependencies>
+      <dependency id="cabal" version="1.22.0.0" />
+    </dependencies>
     <releaseNotes>http://downloads.haskell.org/~ghc/7.10.3/docs/html/users_guide/release-7-10-3.html</releaseNotes>
   </metadata>
   <files>

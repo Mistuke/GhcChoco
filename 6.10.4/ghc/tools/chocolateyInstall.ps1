@@ -1,8 +1,6 @@
-﻿#NOTE: Please remove any commented lines to tidy up prior to releasing the package, including this one
-
-$version       = '6.10.4' # package version
-$packageName   = 'ghc' # arbitrary name for the package, used in messages
-$url           = 'https://www.haskell.org/ghc/dist/6.10.4/ghc-6.10.4-i386-windows.exe' # download url
+﻿$version       = '6.10.4'
+$packageName   = 'ghc'
+$url           = 'https://www.haskell.org/ghc/dist/6.10.4/ghc-6.10.4-i386-windows.exe'
 $installerType = 'exe'
 $silentArgs    = '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
 

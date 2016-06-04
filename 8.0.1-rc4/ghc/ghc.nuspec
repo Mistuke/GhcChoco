@@ -37,6 +37,5 @@
   <files>
     <file src="tools\**" target="tools" />
     <file src="..\..\templates\**" target="tools" />
-    <file src="LICENSE.txt" target="LICENSE.txt" />
   </files>
 </package>
