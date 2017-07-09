@@ -1,4 +1,4 @@
-$version     = '7.10.3.1'
+$version     = '7.10.3'
 $packageName = 'ghc'
 $url         = 'https://downloads.haskell.org/~ghc/7.10.3/ghc-7.10.3-i386-unknown-mingw32-win10.tar.xz'
 $url64       = 'https://downloads.haskell.org/~ghc/7.10.3/ghc-7.10.3-x86_64-unknown-mingw32-win10.tar.xz'
