@@ -12,7 +12,7 @@ $tarFile = $packageName + "Install"
 $tarPath = Join-Path $tmpPath $tarFile
 $tmpFile = Join-Path $binRoot ($tarFile + "~")
 
-Get-ChocolateyWebFile -PackageName $packageName -FileFullPath $tarPath -Url $url -ChecksumType sha256 -Checksum 6a8f1d87420aa1584109189cc5fe413617417239a499237723aa75e36c978a50 -Url64bit $url64  -ChecksumType64 sha256 -Checksum64 9b39ea09d02666b2eeca8a6936c3e253b6cc92d4cd2b4afcbbae6189b071c1ff
+Get-ChocolateyWebFile -PackageName $packageName -FileFullPath $tarPath -Url $url -ChecksumType sha256 -Checksum 6a8f1d87420aa1584109189cc5fe413617417239a499237723aa75e36c978a50 -Url64bit $url64  -ChecksumType64 sha256 -Checksum64 b7413823aa7aeb7bc8e4353d5c0fc09e567e16d4ba0a8f2d337cd08ebb7dbc10
 Get-ChocolateyUnzip -fileFullPath $tarPath -destination $binRoot
 Get-ChocolateyUnzip -fileFullPath $tmpFile -destination $binRoot
 rm $tmpFile # Clean up temporary file

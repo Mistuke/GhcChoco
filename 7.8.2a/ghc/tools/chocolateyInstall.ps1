@@ -1,7 +1,7 @@
-﻿$version     = '7.10.1'
+﻿$version     = '7.8.2'
 $packageName = 'ghc'
-$url         = 'https://downloads.haskell.org/~ghc/7.10.1/ghc-7.10.1-i386-unknown-mingw32-win10.tar.xz'
-$url64       = 'https://downloads.haskell.org/~ghc/7.10.1/ghc-7.10.1-x86_64-unknown-mingw32.tar.bz2'
+$url         = 'https://downloads.haskell.org/~ghc/7.8.2/ghc-7.8.2-i386-unknown-mingw32-win10.tar.xz'
+$url64       = 'https://downloads.haskell.org/~ghc/7.8.2/ghc-7.8.2-x86_64-unknown-mingw32.tar.xz'
 
 $binRoot         = $(Split-Path -parent $MyInvocation.MyCommand.Definition)
 $packageFullName = Join-Path $binRoot ($packageName + '-' + $version)
@@ -12,7 +12,7 @@ $tarFile = $packageName + "Install"
 $tarPath = Join-Path $tmpPath $tarFile
 $tmpFile = Join-Path $binRoot ($tarFile + "~")
 
-Get-ChocolateyWebFile -PackageName $packageName -FileFullPath $tarPath -Url $url -ChecksumType sha256 -Checksum 1fe65b902c6e4fa0c5a8b11b7cc99ffca7a2f3b031e055dd6363df90278dce44 -Url64bit $url64  -ChecksumType64 sha256 -Checksum64 968b7eda7581d0f8b5d27bfb4d754e2747c88696dd676175976f1df0fc8bdd96
+Get-ChocolateyWebFile -PackageName $packageName -FileFullPath $tarPath -Url $url -ChecksumType sha256 -Checksum 761bb43d85abc7572610bd31b5e28e9886bb7e1e49ae19519a6eed3471033d51 -Url64bit $url64  -ChecksumType64 sha256 -Checksum64 05df366cd7138c3aaaa9ca07bef1d19fd9396a576dddaab48020c2011880ca2f
 Get-ChocolateyUnzip -fileFullPath $tarPath -destination $binRoot
 Get-ChocolateyUnzip -fileFullPath $tmpFile -destination $binRoot
 rm $tmpFile # Clean up temporary file
