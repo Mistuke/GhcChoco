@@ -34,6 +34,4 @@ uninstalling can be done with
 If more than one version of `GHC` is present then you will be presented with prompt on which version you
 would like to install.
 
-     Note: Unfortunately because of a how Chocolatey currently works, you will have 
-           to restart the console in order for the PATH variables to be correct. 
-           The current section cannot be updated.
+     Note: You need to run `refreshenv` or restart your console before ghc is available.
