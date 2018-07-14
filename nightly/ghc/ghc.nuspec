@@ -33,7 +33,7 @@
       <dependency id="cabal-head" />
     </dependencies>
     <releaseNotes></releaseNotes>
-    <docsUrl></docsUrl>
+    <docsUrl>https://downloads.haskell.org/~ghc/latest/docs/html/</docsUrl>
     <mailingListUrl>https://mail.haskell.org/cgi-bin/mailman/listinfo/haskell-cafe</mailingListUrl>
     <bugTrackerUrl>https://ghc.haskell.org/trac/ghc/</bugTrackerUrl>
     <projectSourceUrl>https://www.haskell.org/ghc/</projectSourceUrl>
