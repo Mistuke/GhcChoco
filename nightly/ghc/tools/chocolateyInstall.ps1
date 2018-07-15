@@ -4,7 +4,7 @@ $url         = '%deploy.url.32bit%'
 $url64       = '%deploy.url.64bit%'
 
 $binRoot         = $(Split-Path -parent $MyInvocation.MyCommand.Definition)
-$packageFullName = Join-Path $binRoot ($packageName + '-' + $version)
+$packageFullName = Join-Path $binRoot $version
 $binPackageDir   = Join-Path $packageFullName "bin"
 
 $tmpPath = Join-Path $env:chocolateyPackageFolder tmp
