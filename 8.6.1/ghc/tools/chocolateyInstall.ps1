@@ -1,4 +1,4 @@
-﻿$version     = 'ghc-8.6.1'
+﻿$version     = '8.6.1'
 $packageName = 'ghc'
 $url         = 'https://downloads.haskell.org/~ghc/8.6.1/ghc-8.6.1-i386-unknown-mingw32.tar.xz'
 $url64       = 'https://downloads.haskell.org/~ghc/8.6.1/ghc-8.6.1-x86_64-unknown-mingw32.tar.xz'
