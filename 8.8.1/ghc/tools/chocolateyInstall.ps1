@@ -1,10 +1,10 @@
-﻿$version     = 'ghc-%build.version%.%build.date%'
-$packageName = 'ghc-head'
-$url         = '%deploy.url.32bit%'
-$url64       = '%deploy.url.64bit%'
+﻿$version     = '8.8.1'
+$packageName = 'ghc'
+$url         = 'https://downloads.haskell.org/~ghc/8.8.1/ghc-8.8.1-i386-unknown-mingw32.tar.xz'
+$url64       = 'https://downloads.haskell.org/~ghc/8.8.1/ghc-8.8.1-x86_64-unknown-mingw32.tar.xz'
 
 $binRoot         = $(Split-Path -parent $MyInvocation.MyCommand.Definition)
-$packageFullName = Join-Path $binRoot $version
+$packageFullName = Join-Path $binRoot ($packageName + '-' + $version)
 $binPackageDir   = Join-Path $packageFullName "bin"
 
 $tmpPath = Join-Path $env:chocolateyPackageFolder tmp
@@ -12,11 +12,9 @@ $tarFile = $packageName + "Install"
 $tarPath = Join-Path $tmpPath $tarFile
 $tmpFile = Join-Path $binRoot ($tarFile + "~")
 
-Get-ChocolateyWebFile `
-  -PackageName $packageName `
-  -FileFullPath $tarPath `
-  -Url $url -ChecksumType sha256 -Checksum '%deploy.sha256.32bit%' `
-  -Url64bit $url64 -ChecksumType64 sha256 -Checksum64 '%deploy.sha256.64bit%'
+Get-ChocolateyWebFile -PackageName $packageName -FileFullPath $tarPath `
+    -Url $url -ChecksumType sha256 -Checksum <missing> `
+    -Url64bit $url64 -ChecksumType64 sha256 -Checksum64 29e56e6af38017a5a76b2b6995a39d3988fa58131e4b55b62dd317ba7186ac9b
 Get-ChocolateyUnzip -fileFullPath $tarPath -destination $binRoot
 Get-ChocolateyUnzip -fileFullPath $tmpFile -destination $binRoot
 rm $tmpFile # Clean up temporary file
@@ -43,7 +41,7 @@ Import-Module -Force `"`$env:ChocolateyInstall\helpers\chocolateyProfile.psm1`"
 `$pref = `$ErrorActionPreference
 `$ErrorActionPreference = 'SilentlyContinue'
 Update-SessionEnvironment
-`$ErrorActionPreference = $pref
+`$ErrorActionPreference = `$pref
 # Round brackets in variable names cause problems with bash
 Get-ChildItem env:* | %{
   if (!(`$_.Name.Contains('('))) {
