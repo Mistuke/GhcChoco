@@ -33,7 +33,7 @@ $tmpFile = Join-Path $binRoot ($tarFile + "~")
 
 Get-ChocolateyWebFile -PackageName $packageName -FileFullPath $tarPath `
     -Url $url -ChecksumType sha256 -Checksum 2a8fb73080ed4335f7a172fe6cf9da1a2faa51fdb72817c50088292f497fc57a `
-    -Url64bit $url64 -ChecksumType64 sha256 -Checksum64 29e56e6af38017a5a76b2b6995a39d3988fa58131e4b55b62dd317ba7186ac9b
+    -Url64bit $url64 -ChecksumType64 sha256 -Checksum64 e25d9b16ee62cafc7387af2cd021eea676a99cd2c32b83533b016162c63065d9
 Get-ChocolateyUnzip -fileFullPath $tarPath -destination $binRoot
 Get-ChocolateyUnzip -fileFullPath $tmpFile -destination $binRoot
 rm $tmpFile # Clean up temporary file
@@ -46,6 +46,10 @@ $files = get-childitem $binRoot -include *.exe -recurse
 foreach ($file in $files) {
     #generate an ignore file
     New-Item "$file.ignore" -type file -force | Out-Null
+}
+
+if (($null -ne $Env:GITHUB_ACTIONS) -and ("" -ne $Env:GITHUB_ACTIONS)) {
+  Write-Host "::add-path::$binPackageDir"
 }
 
 if (($null -ne $Env:TRAVIS) -and ("" -ne $Env:TRAVIS)) {
