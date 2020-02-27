@@ -33,7 +33,7 @@ $tmpFile = Join-Path $binRoot ($tarFile + "~")
 
 Get-ChocolateyWebFile -PackageName $packageName -FileFullPath $tarPath `
     -Url $url -ChecksumType sha256 -Checksum 2a8fb73080ed4335f7a172fe6cf9da1a2faa51fdb72817c50088292f497fc57a `
-    -Url64bit $url64 -ChecksumType64 sha256 -Checksum64 bbae62018f80dd64781fa0c37ef9333ecf3c8c4fe925ec70601a54d1cccaa395
+    -Url64bit $url64 -ChecksumType64 sha256 -Checksum64 e22586762af0911c06e8140f1792e3ca381a3a482a20d67b9054883038b3a422
 Get-ChocolateyUnzip -fileFullPath $tarPath -destination $binRoot
 Get-ChocolateyUnzip -fileFullPath $tmpFile -destination $binRoot
 rm $tmpFile # Clean up temporary file
