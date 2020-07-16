@@ -1,7 +1,7 @@
 ﻿$version     = '8.8.4'
 $packageName = 'ghc'
 $url         = 'https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-i386-unknown-mingw32.tar.xz'
-$url64       = 'https://downloads.haskell.org/~ghc/8.8.3/ghc-8.8.4-x86_64-unknown-mingw32.tar.xz'
+$url64       = 'https://downloads.haskell.org/~ghc/8.8.4/ghc-8.8.4-x86_64-unknown-mingw32.tar.xz'
 
 $is32 = (Get-OSArchitectureWidth 32)  -or $env:chocolateyForceX86 -eq 'true'
 
@@ -18,7 +18,7 @@ if($is32)
       Write-Host " GHC HQ have not produced a 32 bit binary for Windows again."
       Write-Host " I will now install GHC 8.6.5 instead."
       Write-Host ""
-      # rewrite the version to 8.6,5 so installer works
+      # rewrite the version to 8.6.5 so installer works
       $version = '8.6.5'
   }
 
@@ -33,7 +33,7 @@ $tmpFile = Join-Path $binRoot ($tarFile + "~")
 
 Get-ChocolateyWebFile -PackageName $packageName -FileFullPath $tarPath `
     -Url $url -ChecksumType sha256 -Checksum 2a8fb73080ed4335f7a172fe6cf9da1a2faa51fdb72817c50088292f497fc57a `
-    -Url64bit $url64 -ChecksumType64 sha256 -Checksum64 e22586762af0911c06e8140f1792e3ca381a3a482a20d67b9054883038b3a422
+    -Url64bit $url64 -ChecksumType64 sha256 -Checksum64 d185055d2c8dc3bfe5b88afd59d6877eb1e722b672d1c9649f18296e148ed71f
 Get-ChocolateyUnzip -fileFullPath $tarPath -destination $binRoot
 Get-ChocolateyUnzip -fileFullPath $tmpFile -destination $binRoot
 rm $tmpFile # Clean up temporary file
