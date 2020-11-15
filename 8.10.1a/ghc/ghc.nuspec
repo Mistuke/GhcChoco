@@ -36,7 +36,7 @@
     <dependencies>
       <!-- Bah, needed on every package because chocolatey doesn't insure the choco client itself installs it. -->
       <dependency id="kb2919355" />
-      <dependency id="cabal" version="3.0.0.0" />
+      <dependency id="cabal" version="3.2.0.0" />
     </dependencies>
     <releaseNotes>https://github.com/ghc/ghc/blob/ghc-8.10/docs/users_guide/8.10.1-notes.rst</releaseNotes>
     <docsUrl>https://downloads.haskell.org/~ghc/8.10.1/docs/html/</docsUrl>
