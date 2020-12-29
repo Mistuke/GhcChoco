@@ -54,7 +54,9 @@ rm $tmpFile # Clean up temporary file
 # new folders are stupidly long and verbose and break convention.
 # let's normalize them
 $longBinPackageDir = Join-Path $binRoot $baseTarget
-Rename-Item $longBinPackageDir $packageFullName
+if (Test-Path $pkg_config) {
+    Rename-Item -fo $longBinPackageDir $packageFullName
+}
 
 # FIxes issue #8
 $installScope = 'User'
