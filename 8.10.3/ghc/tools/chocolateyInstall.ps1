@@ -74,7 +74,7 @@ foreach ($file in $files) {
 
 # Detect Github Actions
 if (($null -ne $Env:GITHUB_ACTIONS) -and ("" -ne $Env:GITHUB_ACTIONS)) {
-  Write-Host "::add-path::$binPackageDir"
+  echo "$binPackageDir" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 }
 
 # Detect Azure Pipelines (Fixes issue #9)
