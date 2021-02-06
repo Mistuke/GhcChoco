@@ -54,7 +54,7 @@ rm $tmpFile # Clean up temporary file
 # new folders are stupidly long and verbose and break convention.
 # let's normalize them
 $longBinPackageDir = Join-Path $binRoot $baseTarget
-if (Test-Path $pkg_config) {
+if (Test-Path $longBinPackageDir) {
     Rename-Item -fo $longBinPackageDir $packageFullName
 }
 
