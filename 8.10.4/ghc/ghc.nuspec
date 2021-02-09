@@ -49,8 +49,6 @@ To have choco remember parameters on upgrade, be sure to set `choco feature enab
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>http://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Haskell-Logo.svg/2000px-Haskell-Logo.svg.png</iconUrl>
     <dependencies>
-      <!-- Bah, needed on every package because chocolatey doesn't insure the choco client itself installs it. -->
-      <dependency id="kb2919355" />
       <dependency id="cabal" version="3.2.0.0" />
       <dependency id="chocolatey-core.extension" version="1.1.0" />
     </dependencies>
