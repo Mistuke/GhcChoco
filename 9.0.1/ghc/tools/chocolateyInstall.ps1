@@ -66,10 +66,19 @@ if ($pp['globalinstall'] -eq 'true') {
 }
 Install-ChocolateyPath "$binPackageDir" -Machine "$installScope"
 
-# HACK: Work around that GHC 9.0 is missing ghcii.sh
+if (-Not $is32) {
+# HACK: Work around that GHC 9.0 is missing some components
+# See https://github.com/Mistuke/GhcChoco/issues/13
 echo '#!/bin/sh
 exec "$(dirname "$0")"/ghc --interactive "$@"
 ' | Out-File -FilePath "$binPackageDir\ghcii.sh" -Encoding ascii
+
+  Copy-Item "$binPackageDir\ghcii.sh" "$binPackageDir\ghcii-$version.sh"
+
+  Install-BinFile "ghc-$version" "$binPackageDir\ghc.exe"
+  Install-BinFile "ghci-$version" "$binPackageDir\ghci.exe"
+  Install-BinFile "haddock-$version" "$binPackageDir\haddock.exe"
+}
 
 Write-Host "Hiding shims for `'$binRoot`'."
 $files = get-childitem $binRoot -include *.exe -recurse
