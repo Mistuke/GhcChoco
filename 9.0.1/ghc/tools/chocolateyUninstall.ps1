@@ -17,7 +17,7 @@ $is32 = (Get-OSArchitectureWidth 32)  -or $env:chocolateyForceX86 -eq 'true'
 if ($pp['installdir']) {
   $binRoot         = $pp['installdir']
 } else {
-  $binRoot         = $(Split-Path -parent $MyInvocation.MyCommand.Definition)
+  $binRoot         = Get-ToolsLocation
 }
 $packageFullName = Join-Path $binRoot ($packageName + '-' + $version)
 $binPackageDir   = Join-Path $packageFullName "bin"
@@ -32,3 +32,5 @@ if (-Not $is32) {
   Uninstall-BinFile "ghci-$version"
   Uninstall-BinFile "haddock-$version"
 }
+
+Remove-Item -Force -Recurse $packageFullName

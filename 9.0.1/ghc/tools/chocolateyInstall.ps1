@@ -34,7 +34,7 @@ if($is32)
 if ($pp['installdir']) {
   $binRoot         = $pp['installdir']
 } else {
-  $binRoot         = $(Split-Path -parent $MyInvocation.MyCommand.Definition)
+  $binRoot         = Get-ToolsLocation
 }
 $packageFullName = Join-Path $binRoot ($packageName + '-' + $version)
 $binPackageDir   = Join-Path $packageFullName "bin"
@@ -56,6 +56,7 @@ rm $tmpFile # Clean up temporary file
 $longBinPackageDir = Join-Path $binRoot $baseTarget
 if (Test-Path $longBinPackageDir) {
     Rename-Item -fo $longBinPackageDir $packageFullName
+    Write-Host "Renamed $longBinPackageDir to $packageFullName"
 }
 
 # FIxes issue #8
