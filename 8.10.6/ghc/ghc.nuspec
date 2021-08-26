@@ -29,7 +29,7 @@
 ### Package Specific
 ### changes
 
- * Adds support for Azure Pipelines.
+ * Adds support for Integer Simple packages
 
 #### Package Parameters
 The following package parameters can be set:
