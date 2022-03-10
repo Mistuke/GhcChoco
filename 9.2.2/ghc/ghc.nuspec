@@ -38,10 +38,18 @@ The following package parameters can be set:
 
  * `/installdir:` - The location to install package to.  Note that installing to a directory with spaces will likely lead to difficulties.
  * `/globalinstall:` - Indicates whether package should be installed for current user or all users.
+ * `/no-workarounds:` - Don't apply any package specific workarounds that may be needed to make the compiler work.
 
 To pass parameters, use `--params "''"` (e.g. `choco install packageID [other options] --params="'/ITEM:value /ITEM2:value2 /FLAG_BOOLEAN'"`).
 To have choco remember parameters on upgrade, be sure to set `choco feature enable -n=useRememberedArgumentsForUpgrades`.
 
+This package contains a workaround for the following GHC 9.2.2 issues:
+
+  * Broken depencencies: https://gitlab.haskell.org/ghc/ghc/-/issues/21196
+  * DRAWF5 support: https://gitlab.haskell.org/ghc/ghc/-/issues/21109
+  * Updated MSYS2: https://gitlab.haskell.org/ghc/ghc/-/issues/21111
+  
+  These workarounds do not change the compiler only the packaging, to disable re-run with --params=`"'/no-workarounds'`".
             </description>
     <projectUrl>https://www.haskell.org/ghc/</projectUrl>
     <tags>ghc haskell</tags>

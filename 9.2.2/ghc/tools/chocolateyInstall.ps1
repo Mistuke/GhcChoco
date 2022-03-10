@@ -67,18 +67,66 @@ if ($pp['globalinstall'] -eq 'true') {
 }
 Install-ChocolateyPath "$binPackageDir" -Machine "$installScope"
 
-if (-Not $is32) {
-# HACK: Work around that GHC 9.0 is missing some components
-# See https://github.com/Mistuke/GhcChoco/issues/13
-echo '#!/bin/sh
-exec "$(dirname "$0")"/ghc --interactive "$@"
-' | Out-File -FilePath "$binPackageDir\ghcii.sh" -Encoding ascii
+# Patch the content of files at a certain line
+function Write-Patch {
+  param( [string] $key
+       , [string] $fileName
+       , [string] $template
+       )
 
-  Copy-Item "$binPackageDir\ghcii.sh" "$binPackageDir\ghcii-$version.sh"
+  (Get-Content $fileName) | 
+    Foreach-Object {
+        if ($_ -match "$key") 
+        {
+            #Add Lines after the selected pattern 
+            "$template"
+        }
+        $_ # send the current line to output
+    } | Set-Content $fileName
 
-  Install-BinFile "ghc-$version" "$binPackageDir\ghc.exe"
-  Install-BinFile "ghci-$version" "$binPackageDir\ghci.exe"
-  Install-BinFile "haddock-$version" "$binPackageDir\haddock.exe"
+}
+
+if (-Not $is32 -and -not $pp['no-workarounds']) {
+# HACK: Work around that GHC 9.2.x is missing some components
+# See each individual ticket.
+  Write-Host "`nApplying workarounds for GHC 9.2.2: `
+  * Broken depencencies: https://gitlab.haskell.org/ghc/ghc/-/issues/21196 `
+  * DRAWF5 support: https://gitlab.haskell.org/ghc/ghc/-/issues/21109 `
+  * Updated MSYS2: https://gitlab.haskell.org/ghc/ghc/-/issues/21111 `
+  `
+  These workarounds do not change the compiler only the packaging, to disable re-run with --params=`"'/no-workarounds'`"`n"
+
+  # Copy DLLs to the bin folder to satisfy the loader
+  $mingwBin = Join-Path $packageFullName "mingw\bin\"
+  Copy-Item (Join-Path $mingwBin "libgcc_s_seh-1.dll") $binPackageDir
+  Copy-Item (Join-Path $mingwBin "libwinpthread-1.dll") $binPackageDir
+
+  $mingwLDScript = Join-Path $packageFullName "mingw\x86_64-w64-mingw32\lib\ldscripts\"
+  $toolsDir  = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+  $template1 = (Get-Content (Join-Path $toolsDir "template-ld-1.T")) -join "`n"
+  $template2 = (Get-Content (Join-Path $toolsDir "template-ld-2.T")) -join "`n"
+  $provide = "    PROVIDE (__mingw_initltsdrot_force = mingw_initltsdrot_force)`
+    PROVIDE (__mingw_initltsdyn_force  = mingw_initltsdyn_force)`
+    PROVIDE (__mingw_initltssuo_force  = mingw_initltssuo_force)`n"
+
+  # Patch DWARF5 support
+  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.x"  ) "$template1"
+  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xa" ) "$template1"
+  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xbn") "$template1"
+  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xe" ) "$template1"
+  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xn" ) "$template1"
+  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xr" ) "$template2"
+  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xu" ) "$template2"
+
+  # Patch the symbol redirection
+  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.x"  ) "$provide"
+  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xa" ) "$provide"
+  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xbn") "$provide"
+  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xe" ) "$provide"
+  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xn" ) "$provide"
+  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xr" ) "$provide"
+  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xu" ) "$provide"
+
 }
 
 Write-Host "Hiding shims for `'$binRoot`'."
