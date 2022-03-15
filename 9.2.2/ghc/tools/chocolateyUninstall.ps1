@@ -23,14 +23,7 @@ $packageFullName = Join-Path $binRoot ($packageName + '-' + $version)
 $binPackageDir   = Join-Path $packageFullName "bin"
 
 if (-Not $is32) {
-# HACK: Work around that GHC 9.0 is missing some components
-# See https://github.com/Mistuke/GhcChoco/issues/13
-  Remove-Item "$binPackageDir\ghcii-$version.sh"
-  Remove-Item "$binPackageDir\ghcii.sh"
 
-  Uninstall-BinFile "ghc-$version"
-  Uninstall-BinFile "ghci-$version"
-  Uninstall-BinFile "haddock-$version"
 }
 
 Remove-Item -Force -Recurse $packageFullName

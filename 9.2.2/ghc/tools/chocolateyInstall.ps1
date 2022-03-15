@@ -105,9 +105,9 @@ if (-Not $is32 -and -not $pp['no-workarounds']) {
   $toolsDir  = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
   $template1 = (Get-Content (Join-Path $toolsDir "template-ld-1.T")) -join "`n"
   $template2 = (Get-Content (Join-Path $toolsDir "template-ld-2.T")) -join "`n"
-  $provide = "    PROVIDE (__mingw_initltsdrot_force = mingw_initltsdrot_force)`
-    PROVIDE (__mingw_initltsdyn_force  = mingw_initltsdyn_force)`
-    PROVIDE (__mingw_initltssuo_force  = mingw_initltssuo_force)`n"
+  $provide = "    PROVIDE (mingw_initltsdrot_force = __mingw_initltsdrot_force)`
+    PROVIDE (mingw_initltsdyn_force  = __mingw_initltsdyn_force)`
+    PROVIDE (mingw_initltssuo_force  = __mingw_initltssuo_force)`n"
 
   # Patch DWARF5 support
   Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.x"  ) "$template1"
