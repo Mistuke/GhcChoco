@@ -91,8 +91,6 @@ if (-Not $is32 -and -not $pp['no-workarounds']) {
 # See each individual ticket.
   Write-Host "`nApplying workarounds for GHC 9.2.2: `
   * Broken depencencies: https://gitlab.haskell.org/ghc/ghc/-/issues/21196 `
-  * DRAWF5 support: https://gitlab.haskell.org/ghc/ghc/-/issues/21109 `
-  * Updated MSYS2: https://gitlab.haskell.org/ghc/ghc/-/issues/21111 `
   `
   These workarounds do not change the compiler only the packaging, to disable re-run with --params=`"'/no-workarounds'`"`n"
 
@@ -100,32 +98,6 @@ if (-Not $is32 -and -not $pp['no-workarounds']) {
   $mingwBin = Join-Path $packageFullName "mingw\bin\"
   Copy-Item (Join-Path $mingwBin "libgcc_s_seh-1.dll") $binPackageDir
   Copy-Item (Join-Path $mingwBin "libwinpthread-1.dll") $binPackageDir
-
-  $mingwLDScript = Join-Path $packageFullName "mingw\x86_64-w64-mingw32\lib\ldscripts\"
-  $toolsDir  = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-  $template1 = (Get-Content (Join-Path $toolsDir "template-ld-1.T")) -join "`n"
-  $template2 = (Get-Content (Join-Path $toolsDir "template-ld-2.T")) -join "`n"
-  $provide = "    PROVIDE (mingw_initltsdrot_force = __mingw_initltsdrot_force)`
-    PROVIDE (mingw_initltsdyn_force  = __mingw_initltsdyn_force)`
-    PROVIDE (mingw_initltssuo_force  = __mingw_initltssuo_force)`n"
-
-  # Patch DWARF5 support
-  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.x"  ) "$template1"
-  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xa" ) "$template1"
-  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xbn") "$template1"
-  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xe" ) "$template1"
-  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xn" ) "$template1"
-  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xr" ) "$template2"
-  Write-Patch "For Go and Rust" (Join-Path $mingwLDScript "i386pep.xu" ) "$template2"
-
-  # Patch the symbol redirection
-  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.x"  ) "$provide"
-  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xa" ) "$provide"
-  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xbn") "$provide"
-  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xe" ) "$provide"
-  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xn" ) "$provide"
-  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xr" ) "$provide"
-  Write-Patch '\*\(\.text\)' (Join-Path $mingwLDScript "i386pep.xu" ) "$provide"
 
 }
 

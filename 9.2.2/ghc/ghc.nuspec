@@ -46,8 +46,6 @@ To have choco remember parameters on upgrade, be sure to set `choco feature enab
 This package contains a workaround for the following GHC 9.2.2 issues:
 
   * Broken depencencies: https://gitlab.haskell.org/ghc/ghc/-/issues/21196
-  * DRAWF5 support: https://gitlab.haskell.org/ghc/ghc/-/issues/21109
-  * Updated MSYS2: https://gitlab.haskell.org/ghc/ghc/-/issues/21111
   
   These workarounds do not change the compiler only the packaging, to disable re-run with --params="'/no-workarounds'".
             </description>
