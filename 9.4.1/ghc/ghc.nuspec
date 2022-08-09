@@ -57,7 +57,7 @@ To have choco remember parameters on upgrade, be sure to set `choco feature enab
       <dependency id="chocolatey-core.extension" version="1.1.0" />
     </dependencies>
     <releaseNotes>https://github.com/ghc/ghc/blob/ghc-9.4/docs/users_guide/9.4.1-notes.rst</releaseNotes>
-    <docsUrl>https://downloads.haskell.org/~ghc/9.4.1/docs/html/</docsUrl>
+    <docsUrl>https://downloads.haskell.org/~ghc/9.4.1/docs/</docsUrl>
     <mailingListUrl>https://mail.haskell.org/cgi-bin/mailman/listinfo/haskell-cafe</mailingListUrl>
     <bugTrackerUrl>https://ghc.haskell.org/trac/ghc/</bugTrackerUrl>
     <projectSourceUrl>https://www.haskell.org/ghc/</projectSourceUrl>
