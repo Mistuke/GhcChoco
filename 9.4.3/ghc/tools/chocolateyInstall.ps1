@@ -39,7 +39,7 @@ if ($pp['installdir']) {
 $packageFullName = Join-Path $binRoot ($packageName + '-' + $version)
 $binPackageDir   = Join-Path $packageFullName "bin"
 
-$tmpPath = Join-Path $env:chocolateyPackageFolder tmp
+$tmpPath = Join-Path (Get-ChocolateyPath -PathType 'PackagePath') tmp
 $tarFile = $packageName + "Install"
 $tarPath = Join-Path $tmpPath $tarFile
 $tmpFile = Join-Path $binRoot ($tarFile + "~")
