@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if ??? doesn?t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
+    <id>ghc</id>
+    <title>GHC</title>
+    <version>9.2.5</version>
+    <authors>GHC Team</authors>
+    <owners>Tamar Christina</owners>
+    <summary>GHC is a state-of-the-art, open source, compiler and interactive environment for the functional language Haskell.</summary>
+    <description>Highlights:
+            • GHC supports the entire Haskell 2010 language plus a wide variety of extensions.
+            • GHC has particularly good support for concurrency and parallelism, including support for Software Transactional Memory (STM).
+            • GHC generates fast code, particularly for concurrent programs. Take a look at GHC's performance on The Computer Language Benchmarks Game.
+            • GHC works on several platforms including Windows, Mac, Linux, most varieties of Unix, and several different processor architectures. There are detailed instructions for porting GHC to a new platform.
+            • GHC has extensive optimisation capabilities, including inter-module optimisation.
+            • GHC compiles Haskell code either directly to native code or using LLVM as a back-end. GHC can also generate C code as an intermediate target for porting to new platforms. The interactive environment compiles Haskell to bytecode, and supports execution of mixed bytecode/compiled programs.
+            • Profiling is supported, both by time/allocation and various kinds of heap profiling.
+            • GHC comes with several libraries, and thousands more are available on Hackage.
+
+            There's an important change to path handling for Windows starting with 8.6.1.
+            These changes mean that Haskell programs are no longer constraint to `MAX_PATH`.  So passing a long path to `openFile` will just work.
+            There are a few caveats to this such as you can't access `COM` devices via `COM1` etc anymore and instead need to use the full path `\\.\COM1` etc.
+            This is all documented https://downloads.haskell.org/~ghc/8.8.4/docs/html/users_guide/win32-dlls.html#windows-file-paths
+
+            *32-bit Windows is no longer supported and installing this package on 32-bit Windows will install GHC 8.6.5.*
+
+            GHC 9.0 contains a new I/O manager for Windows as a technical preview. See changelog for more information.
+
+### Package Specific
+### changes
+
+ * Adds support for Azure Pipelines.
+
+#### Package Parameters
+The following package parameters can be set:
+
+ * `/installdir:` - The location to install package to.  Note that installing to a directory with spaces will likely lead to difficulties.
+ * `/globalinstall:` - Indicates whether package should be installed for current user or all users.
+ * `/integer-simple:` - Indicates to use the integer simple package instead of the GMP one.
+ * `/no-workarounds:` - Don't apply any package specific workarounds that may be needed to make the compiler work.
+
+To pass parameters, use `--params "''"` (e.g. `choco install packageID [other options] --params="'/ITEM:value /ITEM2:value2 /FLAG_BOOLEAN'"`).
+To have choco remember parameters on upgrade, be sure to set `choco feature enable -n=useRememberedArgumentsForUpgrades`.
+
+            </description>
+    <projectUrl>https://www.haskell.org/ghc/</projectUrl>
+    <tags>ghc haskell</tags>
+    <copyright>Copyright 2022, The University Court of the University of Glasgow.</copyright>
+    <licenseUrl>https://www.haskell.org/ghc/license</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
+    <iconUrl>http://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Haskell-Logo.svg/2000px-Haskell-Logo.svg.png</iconUrl>
+    <dependencies>
+      <dependency id="cabal" version="3.6.0.0" />
+      <dependency id="chocolatey-core.extension" version="1.1.0" />
+    </dependencies>
+    <releaseNotes>https://github.com/ghc/ghc/blob/ghc-9.2/docs/users_guide/9.2.5-notes.rst</releaseNotes>
+    <docsUrl>https://downloads.haskell.org/~ghc/9.2.5/docs/html/</docsUrl>
+    <mailingListUrl>https://mail.haskell.org/cgi-bin/mailman/listinfo/haskell-cafe</mailingListUrl>
+    <bugTrackerUrl>https://ghc.haskell.org/trac/ghc/</bugTrackerUrl>
+    <projectSourceUrl>https://www.haskell.org/ghc/</projectSourceUrl>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
