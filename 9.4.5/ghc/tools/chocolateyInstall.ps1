@@ -1,12 +1,12 @@
 ﻿$version     = '9.4.5'
 $packageName = 'ghc'
 $url         = 'https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-i386-unknown-mingw32.tar.xz'
-$binSha256   = '89a37bdaff3e8ec237249c6c178ed94ef446478d51d0de53be4ab7a0b19f1512'
+$binSha256   = '1b65ccb99b5e0bc6ad535b58323b023c61a675e0c3a0d53b82f819e55a7dd8d7'
 $variant     = ''
 $pp          = Get-PackageParameters
 if ($pp['integer-simple']) {
   $variant = '-int_native'
-  $binSha256 = '356eaad713502c440922d9e9fd2bbcf750a34e3fe56cbfd3a0726e30a094a1b8'
+  $binSha256 = '908f6989c8b77bdd6e8cfb10a4bcb09b04eacd13a546b89a0de8f17f524e7a0e'
 }
 $baseTarget  = 'ghc-' + $version + '-x86_64-unknown-mingw32'
 $target      = $baseTarget + $variant
